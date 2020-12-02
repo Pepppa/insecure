@@ -1,4 +1,5 @@
 from flask import *
+import hashlib
 
 app = Flask(__name__)
 
@@ -9,6 +10,8 @@ login_form = '''
             <p><input type=submit value=Login>
         </form>
         '''
+
+shadow = {'xshiolg': "qwerty", 'kitty': "1234"}
 
 def in_body(body = "") :
     return "<html><body>" + body + "</body></html>"
@@ -36,30 +39,40 @@ def first_login():
         if username == 'admin' and password == 'admin':
             return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
         else:
-            login_user_url = url_for('login', username = username, password = password)
+            login_user_url = url_for('login', username = username, cookie = hash(password))
             return redirect(login_user_url)
     else:
         global login_form
         return in_body(login_form)
 
-@app.route('/login/<username>', methods=['GET'])
+@app.route('/<username>', methods=['GET'])
 def login(username) :
     print(request.args)
-    pwd = request.args.getlist('password')
+    pwd = request.args.getlist('cookie')[0]
     return '''
     <html><body>
-    Login ''' + username + ''' with ''' + str(pwd) + '''...
+    <p id="login" username="''' + username + '''" cookie="''' + pwd + '''"></p>
     <script src="check_pwd.js"></script>
     </body></html>
     '''
 
 
-@app.route('/login/check_pwd.js')
+@app.route('/check_pwd.js')
 def check_pwd_js():
     check_pwd_file = open("check_pwd.js")
     check_pwd_text = check_pwd_file.read()
     check_pwd_file.close()
     return check_pwd_text
 
+@app.route('/md5/<username>')
+def get_passwd(username) :
+    global shadow
+    if username in shadow :
+        return hash(shadow[username])
+    else :
+        return "No such user"
+
+def hash(string) :
+    return hashlib.md5(string.encode()).hexdigest()
 
 app.run(host='0.0.0.0', port='5000')

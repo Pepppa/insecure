@@ -4,4 +4,5 @@ RUN pip install -r requirements.txt
 EXPOSE 5000/tcp
 COPY src/server.py  /
 COPY src/check_pwd.js  /
-CMD [ "python", "-u", "server.py" ]
+COPY docker/entry_point.sh  /
+CMD [ "/entry_point.sh" ]
