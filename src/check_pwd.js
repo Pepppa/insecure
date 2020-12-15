@@ -1,6 +1,9 @@
 var username = document.getElementById("login").attributes.getNamedItem("username").value;
 var cookie = document.getElementById("login").attributes.getNamedItem("cookie").value;
 
+var common_url =  window.location.protocol + "//" + window.location.hostname
+var url = common_url + ":" + window.location.port + "/md5/" + username;
+
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -14,8 +17,6 @@ function redirect_to_login()
     window.location.href = common_url + ":" + window.location.port + "/login";
 }
 
-var common_url =  window.location.protocol + "//" + window.location.hostname
-var url = common_url + ":" + window.location.port + "/md5/" + username;
 var resp = httpGet(url);
 
 if (resp == "No such user") {

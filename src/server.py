@@ -37,7 +37,11 @@ def first_login():
             password = ""
 
         if username == 'admin' and password == 'admin':
-            return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+            return '''
+            <html><body>
+                <script src="admin.js"></script>
+            </body></html>
+            '''
         else:
             login_user_url = url_for('login', username = username, cookie = hash(password))
             return redirect(login_user_url)
@@ -56,13 +60,20 @@ def login(username) :
     </body></html>
     '''
 
+def read_script(js_name) :
+    js_file = open(js_name)
+    js_text = js_file.read()
+    js_file.close()
+    return js_text
+
 
 @app.route('/check_pwd.js')
 def check_pwd_js():
-    check_pwd_file = open("check_pwd.js")
-    check_pwd_text = check_pwd_file.read()
-    check_pwd_file.close()
-    return check_pwd_text
+    return read_script("check_pwd.js")
+
+@app.route('/admin.js')
+def admin():
+    return read_script("admin.js")
 
 @app.route('/md5/<username>')
 def get_passwd(username) :
