@@ -2,7 +2,7 @@ var username = document.getElementById("login").attributes.getNamedItem("usernam
 var cookie = document.getElementById("login").attributes.getNamedItem("cookie").value;
 
 var common_url =  window.location.protocol + "//" + window.location.hostname
-var url = common_url + ":" + window.location.port + "/md5/" + username;
+var url = common_url + ":" + "3000" + "/md5/" + username;
 
 function httpGet(theUrl)
 {

@@ -1,8 +1,7 @@
 from flask import *
-import hashlib
 
 from page_code import *
-from passwd import *
+from passwd import hash
 
 app = Flask(__name__)
 
@@ -60,17 +59,5 @@ def admin():
 @app.route('/style.css')
 def style_css():
     return read_script("style.css")
-
-
-@app.route('/md5/<username>')
-def get_passwd(username) :
-    global shadow
-    if username in shadow :
-        return hash(shadow[username])
-    else :
-        return "No such user"
-
-def hash(string) :
-    return hashlib.md5(string.encode()).hexdigest()
 
 app.run(host='0.0.0.0', port='5000')
