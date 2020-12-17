@@ -57,6 +57,11 @@ def check_pwd_js():
 def admin():
     return read_script("admin.js")
 
+@app.route('/style.css')
+def style_css():
+    return read_script("style.css")
+
+
 @app.route('/md5/<username>')
 def get_passwd(username) :
     global shadow
