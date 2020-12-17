@@ -1,20 +1,10 @@
 from flask import *
 import hashlib
 
+from page_code import *
+from passwd import *
+
 app = Flask(__name__)
-
-login_form = '''
-        <form method="post">
-            <p><input type=text name=login>
-            <p><input type=password name='password'>
-            <p><input type=submit value=Login>
-        </form>
-        '''
-
-shadow = {'xshiolg': "qwerty", 'kitty': "1234"}
-
-def in_body(body = "") :
-    return "<html><body>" + body + "</body></html>"
 
 @app.route('/')
 def index():
@@ -37,11 +27,8 @@ def first_login():
             password = ""
 
         if username == 'admin' and password == 'admin':
-            return '''
-            <html><body>
-                <script src="admin.js"></script>
-            </body></html>
-            '''
+            return in_body(js('admin'))
+
         else:
             login_user_url = url_for('login', username = username, cookie = hash(password))
             return redirect(login_user_url)
@@ -53,12 +40,7 @@ def first_login():
 def login(username) :
     print(request.args)
     pwd = request.args.getlist('cookie')[0]
-    return '''
-    <html><body>
-    <p id="login" username="''' + username + '''" cookie="''' + pwd + '''"></p>
-    <script src="check_pwd.js"></script>
-    </body></html>
-    '''
+    return in_body('''<p id="login" username="''' + username + '''" cookie="''' + pwd + '''"></p>''' + js('check_pwd'))
 
 def read_script(js_name) :
     js_file = open(js_name)
