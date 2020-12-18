@@ -8,13 +8,17 @@ login_form = '''
         </form>
     </div>
     '''
+
+lk = '''
+    <div class="lk">
+    <h1>Personal page</h1><br>
+'''
+
 head = '''
 <head>
   <meta charset="UTF-8">
   <title>Insecure login</title>
-
     <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
-
 </head>
 '''
 
