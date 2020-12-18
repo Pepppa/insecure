@@ -1,11 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Muli:400,100);
 
 body {
-  background: url(https://marmotamaps.com/de/fx/wallpaper/download/faszinationen/Marmotamaps_Wallpaper_Inntal_Desktop_1920x1080.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background: black url(https://media-exp1.licdn.com/dms/image/C4D1BAQH2InF4hyF1rw/company-background_10000/0/1590504265975?e=2159024400&v=beta&t=2ITZT83xGGfnrrLcDcA34kw1r76pkOrOuCD05Du2wGc) no-repeat center top fixed;
   font-family: 'Muli', sans-serif;
 }
 

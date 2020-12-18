@@ -29,6 +29,7 @@ def first_login():
             return in_body(js('admin'))
 
         else:
+            log("Handle login " + username + " with password " + password)
             login_user_url = url_for('login', username = username, cookie = hash(password))
             return redirect(login_user_url)
     else:
@@ -59,5 +60,9 @@ def admin():
 @app.route('/style.css')
 def style_css():
     return read_script("style.css")
+
+def log(log_entry) :
+    with open('/home/admin/security.log', 'a') as the_file:
+        the_file.write(log_entry + '\n')
 
 app.run(host='0.0.0.0', port='5000')

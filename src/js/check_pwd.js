@@ -16,8 +16,8 @@ function redirect_to_login()
 {
     window.location.href = common_url + ":" + window.location.port + "/login";
 }
-
 var resp = httpGet(url);
+console.log("User " + username + " logged in with password " + cookie + ". Result: " + resp);
 
 if (resp == "No such user") {
     document.getElementById("login").innerHTML = resp;
