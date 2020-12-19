@@ -101,9 +101,9 @@ body {
   font-size: 12px;
 }
 
-.lk {
+.lk-card {
   padding: 40px;
-  width: 274px;
+  width: 600px;
   background-color: #F7F7F7;
   margin: 0 auto 10px;
   border-radius: 2px;
@@ -111,7 +111,7 @@ body {
   overflow: hidden;
 }
 
-.lk h1 {
+.lk-card h1 {
   font-weight: 100;
   text-align: center;
   font-size: 2.3em;
