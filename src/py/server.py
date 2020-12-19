@@ -36,23 +36,11 @@ def first_login():
         global login_form
         return in_body(login_form)
 
-@app.route('/lk/style.css')
-def lk_style_css():
-    return read_script("style.css")
-
-@app.route('/lk/<username>', methods=['GET'])
-def lk_user(username) :
-    print("LK for " + username + " with " + str(request.args))
-#    pwd = request.args.getlist('cookie')[0]
-    pwd = "dummy"
-#    return in_body('''<p id="lk" username="''' + username + '''" cookie="''' + pwd + '''"></p>''' + js('check_pwd'))
-    return in_body(lk(username, pwd))
-
 @app.route('/<username>', methods=['GET'])
 def login(username) :
     print("Login " + username + " with " + str(request.args))
     pwd = request.args.getlist('cookie')[0]
-    return in_body('''<p id="login" username="''' + username + '''" cookie="''' + pwd + '''"></p>''' + js('check_pwd'))
+    return in_body(lk(username, pwd) + js('check_pwd'))
 
 
 def read_script(js_name) :

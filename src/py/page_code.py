@@ -11,10 +11,10 @@ login_form = '''
 
 def lk(username, pwd):
     return '''
-    <div class="lk-card">
+    <div hidden="true" id="card" class="lk-card">
     <h1>Personal page</h1><br>
-    <p id="lk" username="''' + username + '''" cookie="''' + pwd + '''"></p>
-    <p>
+    <p id="login" username="''' + username + '''" cookie="''' + pwd + '''"></p>
+    <p id="main_text">
     All the Linux/C error codes are listed below.
 
 I occasionally google C error codes, but always end up grepping through /usr/include to find the answer. To save myself, and a few others, some time in the future...
