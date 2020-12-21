@@ -39,9 +39,10 @@ if (resp == "No such user") {
 } else if (resp == cookie) {
     if (element.id == "login" ) {
         alert("Login succeed");
-        document.getElementById("card").hidden = false;
         element.id = "lk";
     }
+    console.log("Login succeed for " + element.id);
+    document.getElementById("card").hidden = false;
 } else {
     element.innerHTML = "Incorrect password";
     alert("Incorrect password");

@@ -42,22 +42,25 @@ def first_login():
 
 @app.route('/<username>', methods=['GET', 'POST'])
 def login(username) :
+    pwd = request.args.getlist('cookie')[0]
     if request.method == 'POST':
-        print("My method is post")
-        print(request)
-        card = request.form['card']
-        print("Ready to return:")
-        print(card)
-        return in_body(card)
-    else :
+        form = request.form
+        if 'field' in form :
+            search_text = form['field']
+            return in_body(lk("lk", username, pwd, found_result(search_text)) + js('check_pwd'))
+        else:
+            return in_body(lk("lk", username, pwd) + js('check_pwd'))
+    else:
         print("My method is get")
         print("Login " + username + " with " + str(request.args))
-        pwd = request.args.getlist('cookie')[0]
-        return in_body(lk(username, pwd) + js('check_pwd'))
+        return in_body(lk("login", username, pwd) + js('check_pwd'))
 
 
 def log(log_entry) :
     with open('/home/admin/security.log', 'a') as the_file:
         the_file.write(log_entry + '\n')
+
+def found_result(text) :
+    return text
 
 app.run(host='0.0.0.0', port='5000')

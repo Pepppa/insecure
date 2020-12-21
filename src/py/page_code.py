@@ -9,16 +9,16 @@ login_form = '''
     </div>
     '''
 
-def lk(username, pwd):
+def lk(lktype, username, pwd, result_text = ""):
     return '''
     <div hidden="true" id="card" class="lk-card">
-    <h1>Personal page</h1><br>
-    <p id="login" username="''' + username + '''" cookie="''' + pwd + '''"></p>
-    <p id="main_text"></p>
-        <form method="post">
-            <p><input type=text name=field placeholder="What do you want to search">
-            <p><input type=submit value=Search>
-        </form>
+      <h1>Personal page</h1><br>
+      <p id="''' + lktype + '''" username="''' + username + '''" cookie="''' + pwd + '''"></p>
+      <p id="main_text">''' + result_text + '''</p>
+      <form method="post">
+          <p><input type=text name=field placeholder="What do you want to search">
+          <p><input type=submit value=Search>
+      </form>
     </div>
     '''
 
