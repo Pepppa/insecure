@@ -2,8 +2,10 @@ from flask import *
 
 from page_code import *
 from passwd import hash
+from db import *
 
 app = Flask(__name__)
+db.initialize_db()
 
 @app.route('/')
 def index():
@@ -47,7 +49,7 @@ def login(username) :
         form = request.form
         if 'field' in form :
             search_text = form['field']
-            return in_body(lk("lk", username, pwd, found_result(search_text)) + js('check_pwd'))
+            return in_body(lk("lk", username, pwd, found_result(username, search_text)) + js('check_pwd'))
         else:
             return in_body(lk("lk", username, pwd) + js('check_pwd'))
     else:
@@ -60,7 +62,7 @@ def log(log_entry) :
     with open('/home/admin/security.log', 'a') as the_file:
         the_file.write(log_entry + '\n')
 
-def found_result(text) :
-    return text
+def found_result(username, text) :
+    return "For " + text + " found " + db.get_info(username, text)
 
 app.run(host='0.0.0.0', port='5000')
