@@ -2,7 +2,8 @@ from flask import *
 
 from page_code import *
 from passwd import hash
-from db import *
+
+import db
 
 app = Flask(__name__)
 db.initialize_db()
@@ -49,20 +50,20 @@ def login(username) :
         form = request.form
         if 'field' in form :
             search_text = form['field']
-            return in_body(lk("lk", username, pwd, found_result(username, search_text)) + js('check_pwd'))
+            return in_body(lk("lk", username, pwd, db.get_available_fields(), found_result(username, search_text)) + js('check_pwd'))
         else:
-            return in_body(lk("lk", username, pwd) + js('check_pwd'))
+            return in_body(lk("lk", username, pwd, db.get_available_fields()) + js('check_pwd'))
     else:
         print("My method is get")
         print("Login " + username + " with " + str(request.args))
-        return in_body(lk("login", username, pwd) + js('check_pwd'))
+        return in_body(lk("login", username, pwd, db.get_available_fields()) + js('check_pwd'))
 
 
 def log(log_entry) :
-    with open('/home/admin/security.log', 'a') as the_file:
+    with open('/security.log', 'a') as the_file:
         the_file.write(log_entry + '\n')
 
 def found_result(username, text) :
-    return "For " + text + " found " + db.get_info(username, text)
+    return text + " found for user " + username + ": " + str(db.get_info(username, text))
 
 app.run(host='0.0.0.0', port='5000')

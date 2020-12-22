@@ -115,5 +115,18 @@ body {
   font-weight: 100;
   text-align: center;
   font-size: 2.3em;
+
+.contacts {
+  color: #F7F7F7;
+  font-weight: 400;
+  text-align: center;
+  padding: 700px;
+  width: 600px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+}
+
+
+
 }
 

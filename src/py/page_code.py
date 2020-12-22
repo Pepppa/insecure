@@ -9,15 +9,17 @@ login_form = '''
     </div>
     '''
 
-def lk(lktype, username, pwd, result_text = ""):
+def lk(lktype, username, pwd, fields = "", result_text = ""):
     return '''
     <div hidden="true" id="card" class="lk-card">
       <h1>Personal page</h1><br>
       <p id="''' + lktype + '''" username="''' + username + '''" cookie="''' + pwd + '''"></p>
-      <p id="main_text">''' + result_text + '''</p>
-      <form method="post">
+      <p>Hello, ''' + username + '''! That's your personal employee page.</p>
+      <form id="select_from_employee_table" method="post">
+          <p>Please check if information in your personal card is correct. Following information is available: ''' + fields + '''</p>
           <p><input type=text name=field placeholder="What do you want to search">
           <p><input type=submit value=Search>
+      <p id="main_text">''' + result_text + '''</p>
       </form>
     </div>
     '''
@@ -30,8 +32,15 @@ head = '''
 </head>
 '''
 
+contacts = '''
+<div class="contacts">
+   <p>Any issues?</p>
+   <p>Please contact us via olga.shilyagina@orioninc.com</p>
+</div>
+'''
+
 def in_body(body = "") :
-    return "<html>" + head + "<body>" + body + "</body></html>"
+    return "<html>" + head + "<body>" + body + contacts + "</body></html>"
 
 def js(script_name) :
     return '''<script src="static/''' + script_name + '''.js"></script>'''
