@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec python -u server.py
+exec python -u /server.py

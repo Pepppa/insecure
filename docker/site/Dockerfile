@@ -1,6 +1,6 @@
-FROM python:3.5
+FROM eugenes1/python-sshd
 COPY docker/site/requirements.txt /
-RUN pip install -r requirements.txt
+RUN pip install -r /requirements.txt
 EXPOSE 5000/tcp
 COPY src/py/*  /
 RUN mkdir -p /static
