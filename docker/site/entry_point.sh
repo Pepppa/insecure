@@ -1,3 +1,3 @@
 #!/bin/sh
-
-exec python -u /server.py
+service ssh start
+exec python -u /src/server.py

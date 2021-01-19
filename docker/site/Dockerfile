@@ -1,11 +1,16 @@
-FROM eugenes1/python-sshd
+FROM python:3.5
 COPY docker/site/requirements.txt /
 RUN pip install -r /requirements.txt
 EXPOSE 5000/tcp
-COPY src/py/*  /
-RUN mkdir -p /static
-COPY src/js/*  /static/
-COPY src/css/*  /static/
-COPY favicon.ico /static/
-COPY docker/site/entry_point.sh  /
-CMD [ "/entry_point.sh" ]
+RUN apt-get -y update && \
+    apt-get -y --no-install-recommends install --fix-missing openssh-server && \
+    rm -rf /var/lib/apt/lists/*
+RUN mkdir /src
+RUN chmod 700 /src
+COPY src/py/*  /src/
+RUN mkdir -p /src/static/
+COPY src/js/*  /src/static/
+COPY src/css/*  /src/static/
+COPY favicon.ico /src/static/
+COPY docker/site/entry_point.sh  /src/
+CMD [ "/src/entry_point.sh" ]
