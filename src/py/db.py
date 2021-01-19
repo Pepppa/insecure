@@ -1,7 +1,9 @@
 import sqlite3
 import sys
+import passwd
 
 def start_db() :
+    print("Trying to connect to /home/admin/employee.db")
     conn = sqlite3.connect("/home/admin/employee.db")
     return conn
 
@@ -13,12 +15,16 @@ def stop(conn) :
 def initialize_db() :
     try :
         conn = start_db()
+        print("Clean-up DB")
+        conn.execute("DROP TABLE IF EXISTS employee")
+        print("Create table")
         conn.cursor().execute('''CREATE TABLE employee (name text, phone_number text) ''')
-        conn.cursor().execute('''INSERT INTO employee VALUES ('xshiolg', '+7 555 555 55 55') ''')
-        conn.cursor().execute('''INSERT INTO employee VALUES ('kitty', '+7 555 111 11 11') ''')
+        for employee in passwd.get_all_usernames() :
+            print("""INSERT INTO employee VALUES ('""" + employee + """', '""" + passwd.get_telephone_number(employee)+ """') """)
+            conn.cursor().execute("""INSERT INTO employee VALUES ('""" + employee + """', '""" + passwd.get_telephone_number(employee)+ """') """)
         stop(conn)
     except:
-        print("Unexpected error:",sys.exc_info()[0])
+        print("Unexpected error:",sys.exc_info())
 
 def get_info(username, infotype) :
     conn = start_db()

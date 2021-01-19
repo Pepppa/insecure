@@ -1,6 +1,6 @@
 from flask import *
 from flask_cors import CORS
-from passwd import *
+import passwd
 
 app = Flask(__name__)
 CORS(app)
@@ -11,10 +11,7 @@ def index():
 
 @app.route('/md5/<username>')
 def get_passwd(username) :
-    global shadow
-    if username in shadow :
-        return hash(shadow[username])
-    else :
-        return "No such user"
+   return passwd.get_password_hash(username)
+
 
 app.run(host='0.0.0.0', port='5001')
