@@ -60,7 +60,7 @@ def login(username) :
 
 
 def log(log_entry) :
-    with open('/security.log', 'a') as the_file:
+    with open('/var/log/security_events.log', 'a') as the_file:
         the_file.write(log_entry + '\n')
 
 def found_result(username, text) :
