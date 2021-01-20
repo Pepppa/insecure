@@ -6,6 +6,13 @@ body {
   font-family: 'Muli', sans-serif;
 }
 
+.contacts {
+  color: #F7F7F7;
+  text-align: right;
+  width: 100%;
+  overflow: hidden;
+}
+
 .login-card {
   padding: 40px;
   width: 274px;
@@ -115,18 +122,6 @@ body {
   font-weight: 100;
   text-align: center;
   font-size: 2.3em;
-
-.contacts {
-  color: #F7F7F7;
-  font-weight: 400;
-  text-align: center;
-  padding: 700px;
-  width: 600px;
-  margin: 0 auto 10px;
-  overflow: hidden;
-}
-
-
 
 }
 

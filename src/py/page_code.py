@@ -35,7 +35,9 @@ head = '''
 contacts = '''
 <div class="contacts">
    <p>Any issues?</p>
-   <p>Please contact us via olga.shilyagina@orioninc.com</p>
+   <a href="mailto:olga.shilyagina@orioninc.com?subject=Problem with insecure login page&body=Please put description of your problem here">
+    <button id="btnOutlook">Please contact us!</button>
+   </a>
 </div>
 '''
 
