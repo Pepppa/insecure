@@ -1,4 +1,5 @@
 from flask import *
+import sys
 
 from page_code import *
 from passwd import hash
@@ -48,11 +49,18 @@ def login(username) :
     pwd = request.args.getlist('cookie')[0]
     if request.method == 'POST':
         form = request.form
-        if 'field' in form :
-            search_text = form['field']
-            return in_body(lk("lk", username, pwd, db.get_available_fields(), found_result(username, search_text)) + js('check_pwd'))
-        else:
-            return in_body(lk("lk", username, pwd, db.get_available_fields()) + js('check_pwd'))
+        try:
+            if 'field' in form :
+                search_text = form['field']
+                return in_body(lk("lk", username, pwd, db.get_available_fields(), found_result(username, search_text)) + js('check_pwd'))
+            else:
+                return in_body(lk("lk", username, pwd, db.get_available_fields()) + js('check_pwd'))
+        except:
+            print("Database call is failed. Details: " +  str(sys.exc_info()) + "type " + str(type(sys.exc_info())))
+            main_text = "Something went wrong while proceeding with the request. Please send bug report to support: "
+            (class_name, db_error_object, traced_object) = sys.exc_info()
+            report_button = bug_report(str(db_error_object).replace('<', '&lt').replace('>', '&gt'))
+            return in_body(lk("lk", username, pwd, db.get_available_fields(), main_text, report_button) + js('check_pwd'))
     else:
         print("My method is get")
         print("Login " + username + " with " + str(request.args))

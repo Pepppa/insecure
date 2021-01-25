@@ -2,7 +2,7 @@
 
 dir=$(dirname $0)/..
 
-for line in $(python3 ${dir}/src/passwd.py)
+for line in $(python3 ${dir}/src/py/passwd.py)
 do
     username=$(echo $line | awk -F ':' '{ print $1}')
     passwd=$(echo $line | awk -F ':' '{ print $2}')

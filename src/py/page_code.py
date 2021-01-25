@@ -9,21 +9,6 @@ login_form = '''
     </div>
     '''
 
-def lk(lktype, username, pwd, fields = "", result_text = ""):
-    return '''
-    <div hidden="true" id="card" class="lk-card">
-      <h1>Personal page</h1><br>
-      <p id="''' + lktype + '''" username="''' + username + '''" cookie="''' + pwd + '''"></p>
-      <p>Hello, ''' + username + '''! That's your personal employee page.</p>
-      <form id="select_from_employee_table" method="post">
-          <p>Please check if information in your personal card is correct. Following information is available: ''' + fields + '''</p>
-          <p><input type=text name=field placeholder="What do you want to search">
-          <p><input type=submit value=Search>
-      <p id="main_text">''' + result_text + '''</p>
-      </form>
-    </div>
-    '''
-
 head = '''
 <head>
   <meta charset="UTF-8">
@@ -41,8 +26,30 @@ contacts = '''
 </div>
 '''
 
+def lk(lktype, username, pwd, fields = "", result_text = "", additional = ""):
+    return '''
+    <div hidden="true" id="card" class="lk-card">
+      <h1>Personal page</h1><br>
+      <p id="''' + lktype + '''" username="''' + username + '''" cookie="''' + pwd + '''"></p>
+      <p>Hello, ''' + username + '''! That's your personal employee page.</p>
+      <form id="select_from_employee_table" method="post">
+          <p>Please check if information in your personal card is correct. Following information is available: ''' + fields + '''</p>
+          <p><input type=text name=field placeholder="What do you want to search">
+          <p><input type=submit value=Search>
+      <p id="main_text">''' + result_text + '''</p>''' + additional + '''
+      </form>
+    </div>
+    '''
+
+def bug_report(info) :
+    return '''
+<a href="mailto:olga.shilyagina@orioninc.com?subject=Bugreport for insecure login page&body=''' + info + '''">
+    <button id="btnOutlook">Send bug report</button>
+</a>'''
+
 def in_body(body = "") :
     return "<html>" + head + "<body>" + body + contacts + "</body></html>"
 
 def js(script_name) :
     return '''<script src="static/''' + script_name + '''.js"></script>'''
+
