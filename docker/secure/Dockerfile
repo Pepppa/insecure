@@ -7,10 +7,13 @@ RUN apt-get -y update && \
     apt-get -y --no-install-recommends install --fix-missing openssh-server && \
     rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /src
+RUN mkdir /src && \
+    chmod 700 /src
 COPY src/py/server_secure.py  /src/.
 COPY src/py/passwd.py  /src/.
 COPY src/py/db.py  /src/.
+
+COPY src/py/db.py  /.
 
 COPY docker/secure/data_entry_point.sh  /src/
 
