@@ -1,21 +1,21 @@
-.PHONY: all docker docker-run
+.PHONY: docker-insecure docker-insecuredata insecure-run insecuredata-run
 
-all: docker docker-run
-	
-docker:
-	docker build .  -f docker/site/Dockerfile -t insecure
-	docker build .  -f docker/secure/Dockerfile -t insecuredata
+all: docker all-run
 
 docker-insecure:
-	docker build .  -f docker/site/Dockerfile -t insecure
+	docker build . -f docker/site/Dockerfile -t insecure
 
-docker-run: docker
-	docker run -d -v /home/admin:/home/admin -v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow --restart=always -p 1234:5000 insecure
-	docker run -d -v /home/admin:/home/admin -v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow --restart=always -p 3000:5001 insecuredata
+docker-insecuredata:
+	docker build . -f docker/secure/Dockerfile -t insecuredata
 
-insecure: docker-insecure
+docker: docker-insecure docker-insecuredata
+
+insecure-run:
 	kubectl apply -f k8s/site_depl.yaml
 	kubectl apply -f k8s/site_service.yaml
 
-stop-insecure:
-	kubectl delete deployment,service insecure
+insecuredata-run:
+	docker run -d -v /home/admin:/home/admin -v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow --restart=always -p 3000:5001 insecuredata
+
+all-run: insecure-run insecuredata-run
+

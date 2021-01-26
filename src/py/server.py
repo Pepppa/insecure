@@ -7,7 +7,6 @@ from passwd import hash
 import db
 
 app = Flask(__name__)
-db.initialize_db()
 
 @app.route('/')
 def index():

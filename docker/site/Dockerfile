@@ -7,7 +7,7 @@ RUN apt-get -y update && \
     apt-get -y --no-install-recommends install --fix-missing openssh-server && \
     rm -rf /var/lib/apt/lists/*
 
-RUN touch /var/log/security_events.log && \
+RUN touch /var/log/security_events.log &&\
     chmod 666 /var/log/security_events.log
 
 RUN mkdir /src && \

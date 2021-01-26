@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ids=$(docker ps | tail -2 | awk '{ print $1 }')
+ids=$(docker ps | grep insecuredata | awk '{ print $1 }')
 
 for id in $ids
 do
@@ -8,4 +8,6 @@ do
     docker kill $id
 done
 
-make docker-run
+kubectl delete deployment,service insecure
+
+make all
