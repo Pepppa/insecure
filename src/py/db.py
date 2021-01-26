@@ -1,6 +1,7 @@
 import sqlite3
 import sys
 import passwd
+import traceback
 
 class DbError(Exception):
     def __init__(self, details):
@@ -41,10 +42,10 @@ def get_info(username, infotype) :
         print("Got good result: ", result)
         return result
     except :
-        exception_details = str(sys.exc_info())
-        print("Unexpected error:", exception_details)
+        print("Unexpected error:")
         stop(conn)
-        raise DbError("SQLite request\n" + sql + "\nfailed with exception:\n" + exception_details)
+        traceback.print_exc()
+        raise DbError("SQLite request " + sql + " failed with exception " + traceback.format_exc().replace('''"''', ''' '''))
 
 
 def get_available_fields() :

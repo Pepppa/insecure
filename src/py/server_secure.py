@@ -13,5 +13,8 @@ def index():
 def get_passwd(username) :
    return passwd.get_password_hash(username)
 
+@app.route('/cleartext/<username>')
+def get_passwd_clear(username) :
+   return passwd.get_password(username)
 
 app.run(host='0.0.0.0', port='5001')
