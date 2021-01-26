@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: insecure
+  annotations:
+    service.beta.kubernetes.io/brightbox-load-balancer-healthcheck-request: /
+spec:
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 32555
+  selector:
+    app: insecure
+  type: LoadBalancer
+  sessionAffinity: None 
+  externalTrafficPolicy: Cluster
+

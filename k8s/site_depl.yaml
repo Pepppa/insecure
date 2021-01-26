@@ -1,0 +1,38 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: insecure
+  labels:
+    app: insecure
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: insecure
+  template:
+    metadata:
+      labels:
+        app: insecure
+    spec:
+      containers:
+      - name: insecure
+        image: 'insecure:latest'
+        imagePullPolicy: Never
+        volumeMounts:
+          - mountPath: /home/admin
+            name: home-admin
+          - mountPath: /etc/shadow
+            name: shadow
+          - mountPath: /etc/passwd
+            name: passwd
+      volumes:
+        - name: home-admin
+          hostPath:
+            path: /home/admin
+            type: Directory
+        - name: shadow
+          hostPath:
+            path: /etc/shadow
+        - name: passwd
+          hostPath:
+            path: /etc/passwd
