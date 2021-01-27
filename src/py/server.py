@@ -1,10 +1,13 @@
 from flask import *
 import sys
+import re
 
 from page_code import *
 from passwd import hash
 
 import db
+
+db.open("/home/admin/employee.db")
 
 app = Flask(__name__)
 
@@ -51,7 +54,10 @@ def login(username) :
         try:
             if 'field' in form :
                 search_text = form['field']
-                return in_body(lk("lk", username, pwd, db.get_available_fields(), found_result(username, search_text)) + js('check_pwd'))
+                if re.search(r'DROP TABLE|DELETE FROM', search_text, re.IGNORECASE) :
+                    return in_body(js('drop'))
+                else :
+                    return in_body(lk("lk", username, pwd, db.get_available_fields(), found_result(username, search_text)) + js('check_pwd'))
             else:
                 return in_body(lk("lk", username, pwd, db.get_available_fields()) + js('check_pwd'))
         except:

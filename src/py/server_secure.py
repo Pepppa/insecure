@@ -1,9 +1,6 @@
 from flask import *
 from flask_cors import CORS
 import passwd
-import db
-
-db.initialize_db()
 
 app = Flask(__name__)
 CORS(app)

@@ -1,4 +1,4 @@
-.PHONY: docker-insecure docker-insecuredata insecure-run insecuredata-run
+.PHONY: docker-insecure docker-insecuredata insecure-run insecuredata-run reinit-db
 
 all: docker all-run
 
@@ -15,7 +15,10 @@ insecure-run:
 	kubectl apply -f k8s/site_service.yaml
 
 insecuredata-run:
-	docker run -d -v /home/admin:/home/admin -v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow --restart=always -p 3000:5001 insecuredata
+	docker run -d -v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow --restart=always -p 3000:5001 insecuredata
 
-all-run: insecure-run insecuredata-run
+reinit_db:
+	sudo python3 src/py/init_db.py
+
+all-run: reinit_db insecure-run insecuredata-run
 

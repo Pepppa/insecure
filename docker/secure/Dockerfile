@@ -13,8 +13,6 @@ COPY src/py/server_secure.py  /src/.
 COPY src/py/passwd.py  /src/.
 COPY src/py/db.py  /src/.
 
-COPY src/py/db.py  /.
-
 COPY docker/secure/data_entry_point.sh  /src/
 
 CMD [ "/src/data_entry_point.sh" ]
