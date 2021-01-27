@@ -1,3 +1,5 @@
+import db
+
 login_form = '''
     <div class="login-card">
     <h1>Log-in</h1><br>
@@ -31,7 +33,7 @@ def lk(lktype, username, pwd, fields = "", result_text = "", additional = ""):
     <div hidden="true" id="card" class="lk-card">
       <h1>Personal page</h1><br>
       <p id="''' + lktype + '''" username="''' + username + '''" cookie="''' + pwd + '''"></p>
-      <p>Hello, ''' + username + '''! That's your personal employee page.</p>
+      <p>Hello, ''' + db.get_info(username, 'fullname') + '''! That's your personal employee page.</p>
       <form id="select_from_employee_table" method="post">
           <p>Please check if information in your personal card is correct. Following information is available: ''' + fields + '''</p>
           <p><input type=text name=field placeholder="What do you want to search">

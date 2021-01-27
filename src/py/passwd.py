@@ -20,7 +20,7 @@ def hash(string) :
 def get_password(username):
     global shadow
     if username in shadow :
-        (pwd, number) = shadow[username]
+        (pwd, number, fullname) = shadow[username]
         return pwd
     else :
         return "No such user"
@@ -28,7 +28,7 @@ def get_password(username):
 def get_password_hash(username):
     global shadow
     if username in shadow :
-        (pwd, number) = shadow[username]
+        (pwd, number, fullname) = shadow[username]
         return hash(pwd)
     else :
         return "No such user"
@@ -40,8 +40,16 @@ def get_all_usernames():
 def get_telephone_number(username) :
     global shadow
     if username in shadow :
-        (pwd, number) = shadow[username]
+        (pwd, number, fullname) = shadow[username]
         return number
+    else :
+        return "No such user"
+
+def get_fullname(username) :
+    global shadow
+    if username in shadow :
+        (pwd, number, fullname) = shadow[username]
+        return fullname
     else :
         return "No such user"
 

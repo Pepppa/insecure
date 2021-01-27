@@ -25,22 +25,22 @@ def initialize_db() :
         print("Clean-up DB")
         conn.execute("DROP TABLE IF EXISTS employee")
         print("Create table")
-        conn.cursor().execute('''CREATE TABLE employee (name text, phone_number text) ''')
+        conn.cursor().execute('''CREATE TABLE employee (signum text, fullname text, phone_number text) ''')
         for employee in passwd.get_all_usernames() :
             print("""INSERT INTO employee VALUES ('""" + employee + """', '""" + passwd.get_telephone_number(employee)+ """') """)
-            conn.cursor().execute("""INSERT INTO employee VALUES ('""" + employee + """', '""" + passwd.get_telephone_number(employee)+ """') """)
+            conn.cursor().execute("""INSERT INTO employee VALUES ('""" + employee + """', '""" + passwd.get_fullname(employee)+  """', '""" + passwd.get_telephone_number(employee)+ """') """)
         stop(conn)
     except:
         print("Unexpected error:",sys.exc_info())
 
 def get_info(username, infotype) :
     conn = start_db()
-    sql = """ SELECT """ + infotype + """ FROM employee WHERE name LIKE '""" + username + """'"""
+    sql = """ SELECT """ + infotype + """ FROM employee WHERE signum LIKE '""" + username + """'"""
     print("Ready to run sql " + sql)
     try :
         result = conn.cursor().execute(sql).fetchall()
         print("Got good result: ", result)
-        return result
+        return str(result)
     except :
         print("Unexpected error:")
         stop(conn)
