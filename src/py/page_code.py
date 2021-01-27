@@ -20,7 +20,7 @@ head = '''
 contacts = '''
 <div class="contacts">
    <p>Any issues?</p>
-   <a href="mailto:olga.shilyagina@orioninc.com?subject=Problem with insecure login page&body=Please put description of your problem here">
+   <a href="mailto:a.daniloff5@gmail.com?subject=Problem with insecure login page&body=Please put description of your problem here">
     <button id="btnOutlook">Please contact us!</button>
    </a>
 </div>
@@ -43,7 +43,7 @@ def lk(lktype, username, pwd, fields = "", result_text = "", additional = ""):
 
 def bug_report(info) :
     return '''
-<a href="mailto:olga.shilyagina@orioninc.com?subject=Bugreport for insecure login page&body=''' + info + '''">
+<a href="mailto:a.daniloff5@gmail.com?subject=Bugreport for insecure login page&body=''' + info + '''">
     <button id="btnOutlookBugReport">Send bug report</button>
 </a>'''
 

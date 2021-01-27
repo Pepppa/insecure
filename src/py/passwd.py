@@ -1,16 +1,17 @@
 import hashlib
 
 shadow = {
-        'olga.shilyagina': ("1q2w3e4r", "+7 555 111 11 11"),
-        'testtest': ("iloveyou", "+7 555 222 22 22"),
-        'service': ("letmein", "+7 555 333 33 33"),
-        'sysadm': ("123456789", "+7 555 444 44 44"),
-        'orioninc': ("mera", "+7 555 555 55 55"),
-        'administrator': ("wpp_admin", "+7 555 666 66 66"),
-        'user1': ("starwars", "+7 555 777 77 77"),
-        'testuser': ("123qwe", "+7 555 888 88 88"),
-        'alex': ("888888", "+7 555 999 99 99"),
-        'demo': ("demo", "+7 555 000 00 00")
+        'a.daniloff5': ("1q2w3e4r", "+7 555 111 11 11", "Alex Danilov"),
+        'alex': ("888888", "+7 555 111 11 11", "Alexander of Macedon"),
+        'testtest': ("iloveyou", "+7 555 222 22 22", "Thorin Oakenshield"),
+        'service': ("letmein", "+7 555 333 33 33", "Floki Vilgerdarson"),
+        'sysadm': ("123456789", "+7 555 444 44 44", "Enakin Skywalker"),
+        'orioninc': ("mera", "+7 555 555 55 55", "Jack \"Captain\" Sparrow"),
+        'administrator': ("wpp_admin", "+7 555 666 66 66", "Jack Harkness"),
+        'user1': ("starwars", "+7 555 777 77 77", "James Tiberius Kirk"),
+        'testuser': ("123qwe", "+7 555 888 88 88", "Daphne Bridgerton"),
+        'vasya': ("qwerty", "+7 555 999 99 99", "Vasilii Terkin"),
+        'demo': ("demo", "+7 555 000 00 00", "Sasha Zvereva")
         }
 
 def hash(string) :
