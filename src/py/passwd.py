@@ -3,7 +3,7 @@ import hashlib
 shadow = {
         'a.daniloff5': ("1q2w3e4r", "+7 555 111 11 11", "Alex Danilov"),
         'alex': ("888888", "+7 555 111 11 11", "Alexander of Macedon"),
-        'testtest': ("iloveyou", "+7 555 222 22 22", "Thorin Oakenshield"),
+        'testtest': ("default", "+7 555 222 22 22", "Thorin Oakenshield"),
         'service': ("letmein", "+7 555 333 33 33", "Floki Vilgerdarson"),
         'sysadm': ("123456789", "+7 555 444 44 44", "Enakin Skywalker"),
         'orioninc': ("mera", "+7 555 555 55 55", "Jack \"Captain\" Sparrow"),
