@@ -25,11 +25,16 @@ spec:
             name: shadow
           - mountPath: /etc/passwd
             name: passwd
+          - mountPath: /var/log/security_events.log
+            name: security-event
       volumes:
         - name: home-admin
           hostPath:
             path: /home/admin
             type: Directory
+        - name: security-event
+          hostPath:
+            path: /var/log/security_events.log
         - name: shadow
           hostPath:
             path: /etc/shadow

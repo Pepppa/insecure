@@ -7,6 +7,7 @@ from passwd import hash
 
 import db
 
+logname="/var/log/security_events.log"
 db.open("/home/admin/employee.db")
 
 app = Flask(__name__)
@@ -73,7 +74,8 @@ def login(username) :
 
 
 def log(log_entry) :
-    with open('/var/log/security_events.log', 'a') as the_file:
+    global logname
+    with open(logname, 'a') as the_file:
         the_file.write(log_entry + '\n')
 
 def found_result(username, text) :
