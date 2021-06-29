@@ -1,4 +1,4 @@
-kind: Deployment
+kind: StatefulSet
 apiVersion: apps/v1
 metadata:
   name: insecure
@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app: insecure
+  serviceName: "insecure"
   template:
     metadata:
       labels:
@@ -25,7 +26,7 @@ spec:
             name: shadow
           - mountPath: /etc/passwd
             name: passwd
-          - mountPath: /var/log/security_events.log
+          - mountPath: /var/log
             name: security-event
       volumes:
         - name: home-admin
@@ -34,7 +35,8 @@ spec:
             type: Directory
         - name: security-event
           hostPath:
-            path: /var/log/security_events.log
+            path: /var/log
+            type: Directory
         - name: shadow
           hostPath:
             path: /etc/shadow
