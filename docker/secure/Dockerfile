@@ -8,7 +8,8 @@ RUN apt-get -y update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /src && \
-    chmod 700 /src
+    chmod 755 /src
+
 COPY src/py/server_secure.py  /src/.
 COPY src/py/passwd.py  /src/.
 COPY src/py/db.py  /src/.

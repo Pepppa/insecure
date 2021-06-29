@@ -22,10 +22,13 @@ spec:
         volumeMounts:
           - mountPath: /home/admin
             name: home-admin
+            readOnly: true
           - mountPath: /etc/shadow
             name: shadow
+            readOnly: true
           - mountPath: /etc/passwd
             name: passwd
+            readOnly: true
           - mountPath: /var/log
             name: security-event
       volumes:

@@ -49,4 +49,4 @@ stop: collect-logs
 	kubectl delete service,statefulset insecure
 	docker kill $(docker_id)
 
-restart: stop all-run
+restart: stop docker all-run
