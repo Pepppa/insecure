@@ -3,10 +3,10 @@
 all: docker all-run
 
 docker-insecure:
-	docker build . -f docker/site/Dockerfile -t insecure
+	docker build . -f docker/site/Dockerfile -t insecure --network=host
 
 docker-insecuredata:
-	docker build . -f docker/secure/Dockerfile -t insecuredata
+	docker build . -f docker/secure/Dockerfile -t insecuredata --network=host
 
 docker: docker-insecure docker-insecuredata
 

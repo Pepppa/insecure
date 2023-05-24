@@ -1,4 +1,4 @@
-FROM python:3.5
+FROM python:3.9
 COPY docker/secure/requirements.txt /
 RUN pip install -r requirements.txt
 EXPOSE 5001/tcp
