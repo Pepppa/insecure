@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.5
 COPY docker/site/requirements.txt /
 RUN pip install -r /requirements.txt
 EXPOSE 5000/tcp
